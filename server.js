@@ -4,19 +4,7 @@ var express = require('express');
 var app = express();
 var PORT = 3000;
 
-// Route Level middleware -- pass into app.use
-var middleware = {
-	requireAuthentication: function(req, res, next) {
-		console.log('Private route hit');
-		next();
-	},
-	logger: function(req, res, next) {
-		var date = new Date().toString();
-
-		console.log('Request: ' + date + ' ' + req.method + ' ' + req.originalURL);
-		next();
-	}
-}
+var middleware = require('./middleware');
 
 // Middleware definitions must be defined first
 app.use(middleware.logger);
